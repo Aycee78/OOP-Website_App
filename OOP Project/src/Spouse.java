@@ -11,9 +11,9 @@ public class Spouse { // Making of class based on the Spouse table
         this.applicant_id = applicant_id;
         this.spouse_fullname = spouse_fullname;
         this.spouse_employment_status = spouse_employment_status;
-        this.String exemption_claimant = String exemption_claimant;
-        this.String spouse_emp_tin = String spouse_emp_tin;
-        this.String spouse_tin = String spouse_tin;
+        this.exemption_claimant = exemption_claimant;
+        this.spouse_emp_tin = spouse_emp_tin;
+        this.spouse_tin = spouse_tin;
     }
 
 
