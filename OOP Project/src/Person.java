@@ -5,8 +5,13 @@ public class Person {
     private String date_of_birth;
     private String place_of_birth;
 
-    //Make the constructor to initialize the class variables
-    public Person (String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth) {
+=======
+    // Blank constructor: Let's us make an empty Person object first, without having to type their details right away.
+    public Person() {}
+
+    // Pre-filled constructor: Let's us make a Person with their details set immediately in one step.
+    public Person(String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth) {
+>>>>>>> 974d22ef7ef17d998cf414243705652323e13464
         this.taxpayer_fullname = taxpayer_fullname;
         this.gender = gender;
         this.civil_status = civil_status;
@@ -14,20 +19,45 @@ public class Person {
         this.place_of_birth = place_of_birth;
     }
 
-    //Make the getters to get the values of the class variables
-    String get_taxpayer_fullname() { 
-        return this.taxpayer_fullname;
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
+    public String getTaxpayer_fullname() {
+        return taxpayer_fullname;
     }
-    String get_gender() { 
-        return this.gender;
+
+    public void setTaxpayer_fullname(String taxpayer_fullname) {
+        this.taxpayer_fullname = taxpayer_fullname;
     }
-    String get_civil_status() { 
-        return this.civil_status;
+
+    public String getGender() {
+        return gender;
     }
-    String get_date_of_birth() { 
-        return this.date_of_birth;
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
-    String get_place_of_birth() { 
-        return this.place_of_birth;
+
+    public String getCivil_status() {
+        return civil_status;
+    }
+
+    public void setCivil_status(String civil_status) {
+        this.civil_status = civil_status;
+    }
+
+    public String getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(String date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public String getPlace_of_birth() {
+        return place_of_birth;
+    }
+
+    public void setPlace_of_birth(String place_of_birth) {
+        this.place_of_birth = place_of_birth;
+>>>>>>> 974d22ef7ef17d998cf414243705652323e13464
     }
 }
