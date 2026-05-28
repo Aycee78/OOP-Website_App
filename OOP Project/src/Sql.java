@@ -34,6 +34,31 @@ public class Sql {
         }
     }
 
+    // Check if a taxpayer is already registered in the database by their full name or TIN
+    public boolean checkTaxpayerExists(String fullName, String tin) {
+        String sqlQuery;
+        if (tin != null && !tin.trim().isEmpty()) {
+            sqlQuery = "SELECT * FROM taxpayer WHERE taxpayer_fullname = ? OR taxpayer_tin = ?;";
+        } else {
+            sqlQuery = "SELECT * FROM taxpayer WHERE taxpayer_fullname = ?;";
+        }
+
+        try (Connection connection = this.connect();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            
+            preparedStatement.setString(1, fullName);
+            if (tin != null && !tin.trim().isEmpty()) {
+                preparedStatement.setString(2, tin);
+            }
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (Exception error) {
+            System.out.println("Error checking: " + error.getMessage());
+            return false;
+        }
+    }
+
     // Find all towns/municipalities from the database
     public List<Location> getLocations() {
         List<Location> locationList = new ArrayList<>();
