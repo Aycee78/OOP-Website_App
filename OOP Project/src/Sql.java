@@ -21,7 +21,7 @@ public class Sql {
         }
     }
 
-    // 2. Validate user login
+    // 2. Validate user login credentials
     public boolean validateLogin(String username, String password) {
         String sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ?;";
         try (Connection connection = this.connect();
@@ -38,7 +38,7 @@ public class Sql {
         }
     }
 
-    // 3. Get all locations for dropdown box in the UI
+    // 3. Get all locations ordered by name
     public List<Location> getLocations() {
         List<Location> locationList = new ArrayList<>();
         String sqlQuery = "SELECT mun_code, mun, rdo_code FROM location ORDER BY mun ASC;";
@@ -189,7 +189,7 @@ public class Sql {
         }
     }
 
-    // 9. Fetch summary of registered taxpayers for the JTable Directory
+    // 9. Fetch summary of registered taxpayers
     public List<Taxpayer> getAllTaxpayers() {
         List<Taxpayer> taxpayerList = new ArrayList<>();
         String sqlQuery = "SELECT applicant_id, taxpayer_fullname, taxpayer_tin, email, mobile, civil_status FROM taxpayer ORDER BY applicant_id DESC;";
