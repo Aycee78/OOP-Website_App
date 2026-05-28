@@ -7,10 +7,10 @@ public class Employer {
     private String emp_mun_code;
     private String registering_office_type;
 
-    // Default constructor
+    // Blank constructor: Let's us make an empty employer object first, before filling it up with user inputs from our UI screens.
     public Employer() {}
 
-    // Parameterized constructor
+    // Pre-filled constructor: Let's us make an employer with all company details set immediately in one step.
     public Employer(String emp_tin, String emp_fullname, String emp_full_address, String zip_code, String emp_landline, String emp_mun_code, String registering_office_type) {
         this.emp_tin = emp_tin;
         this.emp_fullname = emp_fullname;
@@ -21,7 +21,7 @@ public class Employer {
         this.registering_office_type = registering_office_type;
     }
 
-    // Getters and Setters
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
     public String getEmp_tin() {
         return emp_tin;
     }

@@ -1,3 +1,4 @@
+// extends Person: This means Taxpayer inherits (shares) all details from the Person class so we don't have to rewrite code for name, gender, etc.
 public class Taxpayer extends Person {
     private int applicant_id;
     private String taxpayer_tin;
@@ -26,14 +27,14 @@ public class Taxpayer extends Person {
     private String id_issuer;
     private String id_place;
 
-    // Default constructor
+    // Blank constructor: Let's us make an empty Taxpayer object first, before filling it up with user inputs from our UI screens.
     public Taxpayer() {
         super();
     }
 
-    // Parameterized constructor including applicant ID
+    // Pre-filled constructor WITH ID: Used when loading a taxpayer that is already saved in the database.
     public Taxpayer(int applicant_id, String taxpayer_tin, String bir_reg_date, String pcn, String taxpayer_type, String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth, String citizenship, String other_citizenship, String mother_fullname, String father_fullname, String full_address, String foreign_address, String mun_code, String zip_code, String landline, String fax, String mobile, String email, String tax_type, String form_type, String atc, String id_type, String id_number, String id_effectivity, String id_expiry, String id_issuer, String id_place) {
-        // Call parent constructor to set personal details
+        // super(): Sends personal details to the Person class so we can reuse its code.
         super(taxpayer_fullname, gender, civil_status, date_of_birth, place_of_birth);
         this.applicant_id = applicant_id;
         this.taxpayer_tin = taxpayer_tin;
@@ -63,9 +64,9 @@ public class Taxpayer extends Person {
         this.id_place = id_place;
     }
 
-    // Parameterized constructor excluding applicant ID
+    // Pre-filled constructor WITHOUT ID: Used when creating a new taxpayer (the database will make an ID for them).
     public Taxpayer(String taxpayer_tin, String bir_reg_date, String pcn, String taxpayer_type, String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth, String citizenship, String other_citizenship, String mother_fullname, String father_fullname, String full_address, String foreign_address, String mun_code, String zip_code, String landline, String fax, String mobile, String email, String tax_type, String form_type, String atc, String id_type, String id_number, String id_effectivity, String id_expiry, String id_issuer, String id_place) {
-        // Call parent constructor to set personal details
+        // super(): Sends personal details to the Person class so we can reuse its code.
         super(taxpayer_fullname, gender, civil_status, date_of_birth, place_of_birth);
         this.taxpayer_tin = taxpayer_tin;
         this.bir_reg_date = bir_reg_date;
@@ -94,7 +95,7 @@ public class Taxpayer extends Person {
         this.id_place = id_place;
     }
 
-    // Getters and Setters
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
     public int getApplicant_id() {
         return applicant_id;
     }

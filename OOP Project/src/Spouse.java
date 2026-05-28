@@ -6,10 +6,10 @@ public class Spouse {
     private String spouse_emp_tin;
     private String spouse_tin;
 
-    // Default constructor
+    // Blank constructor: Let's us make an empty spouse object first, before filling it up with user inputs from our UI screens.
     public Spouse() {}
 
-    // Parameterized constructor
+    // Pre-filled constructor: Let's us make a spouse with their details set immediately, linking them to the main taxpayer.
     public Spouse(int applicant_id, String spouse_fullname, String spouse_employment_status, String exemption_claimant, String spouse_emp_tin, String spouse_tin) {
         this.applicant_id = applicant_id;
         this.spouse_fullname = spouse_fullname;
@@ -19,7 +19,7 @@ public class Spouse {
         this.spouse_tin = spouse_tin;
     }
 
-    // Getters and Setters
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
     public int getApplicant_id() {
         return applicant_id;
     }

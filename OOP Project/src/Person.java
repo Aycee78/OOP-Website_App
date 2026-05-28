@@ -5,9 +5,10 @@ public class Person {
     private String date_of_birth;
     private String place_of_birth;
 
-    // Default constructor
+    // Blank constructor: Let's us make an empty Person object first, without having to type their details right away.
     public Person() {}
 
+    // Pre-filled constructor: Let's us make a Person with their details set immediately in one step.
     public Person(String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth) {
         this.taxpayer_fullname = taxpayer_fullname;
         this.gender = gender;
@@ -16,7 +17,7 @@ public class Person {
         this.place_of_birth = place_of_birth;
     }
 
-    // Getters and Setters
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
     public String getTaxpayer_fullname() {
         return taxpayer_fullname;
     }

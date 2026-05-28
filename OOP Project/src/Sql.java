@@ -8,20 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sql {
+    // Database connection URL
     private static final String DATABASE_URL = "jdbc:sqlite:OOPgroup2finaldb.db";
 
-    // 1. Connect to SQLite database
-    public Connection connect() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            return DriverManager.getConnection(DATABASE_URL);
-        } catch (Exception error) {
-            System.out.println("Database connection error: " + error.getMessage());
-            return null;
-        }
+    // Connect to the SQLite database
+    public Connection connect() throws SQLException, ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
+        return DriverManager.getConnection(DATABASE_URL);
     }
 
-    // 2. Validate user login credentials
+    // Check if the login username and password are correct
     public boolean validateLogin(String username, String password) {
         String sqlQuery = "SELECT * FROM users WHERE username = ? AND password = ?;";
         try (Connection connection = this.connect();
@@ -32,13 +28,13 @@ public class Sql {
             
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
-        } catch (SQLException error) {
+        } catch (Exception error) {
             System.out.println("Login error: " + error.getMessage());
             return false;
         }
     }
 
-    // 3. Get all locations ordered by name
+    // Find all towns/municipalities from the database
     public List<Location> getLocations() {
         List<Location> locationList = new ArrayList<>();
         String sqlQuery = "SELECT mun_code, mun, rdo_code FROM location ORDER BY mun ASC;";
@@ -54,13 +50,13 @@ public class Sql {
                 );
                 locationList.add(location);
             }
-        } catch (SQLException error) {
-            System.out.println("Failed to fetch locations: " + error.getMessage());
+        } catch (Exception error) {
+            System.out.println("Failed to find locations: " + error.getMessage());
         }
         return locationList;
     }
 
-    // 4. Save a Taxpayer profile
+    // Save a new taxpayer profile and return their generated ID number
     public int saveTaxpayer(Taxpayer taxpayer) {
         String sqlQuery = "INSERT INTO taxpayer (taxpayer_tin, bir_reg_date, pcn, taxpayer_type, taxpayer_fullname, gender, civil_status, date_of_birth, place_of_birth, citizenship, other_citizenship, mother_fullname, father_fullname, full_address, foreign_address, mun_code, zip_code, landline, fax, mobile, email, tax_type, form_type, atc, id_type, id_number, id_effectivity, id_expiry, id_issuer, id_place) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         int generatedId = -1;
@@ -105,13 +101,13 @@ public class Sql {
             if (resultSet.next()) {
                 generatedId = resultSet.getInt(1);
             }
-        } catch (SQLException error) {
+        } catch (Exception error) {
             System.out.println("Error saving Taxpayer: " + error.getMessage());
         }
         return generatedId;
     }
 
-    // 5. Save Employer
+    // Save employer details (skips if they are already in the database)
     public void saveEmployerIfNotExists(Employer employer) {
         String sqlQuery = "INSERT OR IGNORE INTO employer (emp_tin, emp_fullname, emp_full_address, zip_code, emp_landline, emp_mun_code, registering_office_type) VALUES (?, ?, ?, ?, ?, ?, ?);";
         try (Connection connection = this.connect();
@@ -126,12 +122,12 @@ public class Sql {
             preparedStatement.setString(7, employer.getRegistering_office_type());
             
             preparedStatement.executeUpdate();
-        } catch (SQLException error) {
+        } catch (Exception error) {
             System.out.println("Error saving Employer: " + error.getMessage());
         }
     }
 
-    // 6. Save Spouse
+    // Save spouse details linked to the taxpayer ID
     public void saveSpouse(Spouse spouse) {
         String sqlQuery = "INSERT INTO spouse (applicant_id, spouse_fullname, spouse_employment_status, exemption_claimant, spouse_emp_tin, spouse_tin) VALUES (?, ?, ?, ?, ?, ?);";
         try (Connection connection = this.connect();
@@ -150,12 +146,12 @@ public class Sql {
             
             preparedStatement.setString(6, spouse.getSpouse_tin());
             preparedStatement.executeUpdate();
-        } catch (SQLException error) {
+        } catch (Exception error) {
             System.out.println("Error saving Spouse: " + error.getMessage());
         }
     }
 
-    // 7. Save Dependent
+    // Save a dependent linked to the taxpayer ID
     public void saveDependent(Dependent dependent) {
         String sqlQuery = "INSERT INTO dependents (applicant_id, dependent_fullname, dependent_dob, is_incapacitated) VALUES (?, ?, ?, ?);";
         try (Connection connection = this.connect();
@@ -167,12 +163,12 @@ public class Sql {
             preparedStatement.setString(4, dependent.getIs_incapacitated());
             
             preparedStatement.executeUpdate();
-        } catch (SQLException error) {
+        } catch (Exception error) {
             System.out.println("Error saving Dependent: " + error.getMessage());
         }
     }
 
-    // 8. Save Employee Relationship
+    // Link a taxpayer to an employer (job record)
     public void saveEmployeeRelationship(Employee_Relationship relationship) {
         String sqlQuery = "INSERT INTO employee_relationship (applicant_id, emp_tin, emp_type, hire_date) VALUES (?, ?, ?, ?);";
         try (Connection connection = this.connect();
@@ -184,12 +180,12 @@ public class Sql {
             preparedStatement.setString(4, relationship.getHire_date());
             
             preparedStatement.executeUpdate();
-        } catch (SQLException error) {
+        } catch (Exception error) {
             System.out.println("Error saving Employee Relationship: " + error.getMessage());
         }
     }
 
-    // 9. Fetch summary of registered taxpayers
+    // Get a list of all registered taxpayers
     public List<Taxpayer> getAllTaxpayers() {
         List<Taxpayer> taxpayerList = new ArrayList<>();
         String sqlQuery = "SELECT applicant_id, taxpayer_fullname, taxpayer_tin, email, mobile, civil_status FROM taxpayer ORDER BY applicant_id DESC;";
@@ -207,8 +203,8 @@ public class Sql {
                 taxpayer.setCivil_status(resultSet.getString("civil_status"));
                 taxpayerList.add(taxpayer);
             }
-        } catch (SQLException error) {
-            System.out.println("Failed to fetch taxpayers: " + error.getMessage());
+        } catch (Exception error) {
+            System.out.println("Failed to find taxpayers: " + error.getMessage());
         }
         return taxpayerList;
     }

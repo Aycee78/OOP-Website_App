@@ -3,12 +3,14 @@ public class Location {
     private String mun;
     private String rdo_code;
 
+    // Pre-filled constructor: Let's us make a location using information queried from the database checking.
     public Location(String mun_code, String mun, String rdo_code) {
         this.mun_code = mun_code;
         this.mun = mun;
         this.rdo_code = rdo_code;
     }
 
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
     public String getMun_code() {
         return mun_code;
     }
@@ -33,6 +35,7 @@ public class Location {
         this.rdo_code = rdo_code;
     }
 
+    // Text Display: Changes how this object looks as text so it displays nicely inside a dropdown list.
     @Override
     public String toString() {
         return mun + " (" + mun_code + ")";

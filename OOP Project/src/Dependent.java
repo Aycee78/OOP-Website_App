@@ -3,12 +3,12 @@ public class Dependent {
     private int applicant_id;
     private String dependent_fullname;
     private String dependent_dob;
-    private String is_incapacitated; // "Yes" or "No"
+    private String is_incapacitated; // Strictly "Yes" or "No"
 
-    // Default constructor
+    // Blank constructor: Let's us make an empty dependent object first, before filling it up with user inputs from our UI screens.
     public Dependent() {}
 
-    // Parameterized constructor including dependent_id
+    // Pre-filled constructor WITH ID: Used when loading a dependent that is already saved in the database.
     public Dependent(int dependent_id, int applicant_id, String dependent_fullname, String dependent_dob, String is_incapacitated) {
         this.dependent_id = dependent_id;
         this.applicant_id = applicant_id;
@@ -17,7 +17,7 @@ public class Dependent {
         this.is_incapacitated = is_incapacitated;
     }
 
-    // Parameterized constructor excluding dependent_id (useful for new records before saving)
+    // Pre-filled constructor WITHOUT ID: Used when creating a new dependent (the database will auto-increment the ID for them).
     public Dependent(int applicant_id, String dependent_fullname, String dependent_dob, String is_incapacitated) {
         this.applicant_id = applicant_id;
         this.dependent_fullname = dependent_fullname;
@@ -25,7 +25,7 @@ public class Dependent {
         this.is_incapacitated = is_incapacitated;
     }
 
-    // Getters and Setters
+    // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
     public int getDependent_id() {
         return dependent_id;
     }
