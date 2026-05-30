@@ -9,10 +9,10 @@ public class Employee_Relationship {
 
     // Pre-filled constructor: Let's us make an employment link directly using a taxpayer ID and an employer TIN.
     public Employee_Relationship(int applicant_id, String emp_tin, String emp_type, String hire_date) {
-        this.applicant_id = applicant_id;
-        this.emp_tin = emp_tin;
-        this.emp_type = emp_type;
-        this.hire_date = hire_date;
+        setApplicant_id(applicant_id);
+        setEmp_tin(emp_tin);
+        setEmp_type(emp_type);
+        setHire_date(hire_date);
     }
 
     // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
@@ -20,7 +20,7 @@ public class Employee_Relationship {
         return applicant_id;
     }
 
-    public void setApplicant_id(int applicant_id) {
+    public final void setApplicant_id(int applicant_id) {
         this.applicant_id = applicant_id;
     }
 
@@ -28,7 +28,10 @@ public class Employee_Relationship {
         return emp_tin;
     }
 
-    public void setEmp_tin(String emp_tin) {
+    public final void setEmp_tin(String emp_tin) {
+        if (emp_tin == null || !emp_tin.matches("\\d{3}-\\d{3}-\\d{3}-\\d{3}")) {
+            throw new IllegalArgumentException("Employer TIN must be in 000-000-000-000 format.");
+        }
         this.emp_tin = emp_tin;
     }
 
@@ -36,15 +39,33 @@ public class Employee_Relationship {
         return emp_type;
     }
 
-    public void setEmp_type(String emp_type) {
-        this.emp_type = emp_type;
+    public final void setEmp_type(String emp_type) {
+        if (emp_type == null) {
+            throw new IllegalArgumentException("Employment type is required.");
+        }
+        switch (emp_type) {
+            case "Primary":
+                this.emp_type = "Primary";
+                break;
+            case "Concurrent":
+                this.emp_type = "Concurrent";
+                break;
+            case "Successive":
+                this.emp_type = "Successive";
+                break;
+            default:
+                throw new IllegalArgumentException("Employment type must be 'Primary', 'Concurrent', or 'Successive'.");
+        }
     }
 
     public String getHire_date() {
         return hire_date;
     }
 
-    public void setHire_date(String hire_date) {
+    public final void setHire_date(String hire_date) {
+        if (hire_date == null || !hire_date.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            throw new IllegalArgumentException("Hire date must be in YYYY-MM-DD format.");
+        }
         this.hire_date = hire_date;
     }
 }

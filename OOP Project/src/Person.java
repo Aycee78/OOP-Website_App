@@ -10,11 +10,11 @@ public class Person {
 
     // Pre-filled constructor: Let's us make a Person with their details set immediately in one step.
     public Person(String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth) {
-        this.taxpayer_fullname = taxpayer_fullname;
-        this.gender = gender;
-        this.civil_status = civil_status;
-        this.date_of_birth = date_of_birth;
-        this.place_of_birth = place_of_birth;
+        setTaxpayer_fullname(taxpayer_fullname);
+        setGender(gender);
+        setCivil_status(civil_status);
+        setDate_of_birth(date_of_birth);
+        setPlace_of_birth(place_of_birth);
     }
 
     // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
@@ -22,7 +22,10 @@ public class Person {
         return taxpayer_fullname;
     }
 
-    public void setTaxpayer_fullname(String taxpayer_fullname) {
+    public final void setTaxpayer_fullname(String taxpayer_fullname) {
+        if (taxpayer_fullname == null || taxpayer_fullname.isEmpty()) {
+            throw new IllegalArgumentException("Taxpayer full name is required.");
+        }
         this.taxpayer_fullname = taxpayer_fullname;
     }
 
@@ -30,7 +33,10 @@ public class Person {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public final void setGender(String gender) {
+        if (gender == null || (!gender.equals("Male") && !gender.equals("Female"))) {
+            throw new IllegalArgumentException("Gender must be 'Male' or 'Female'.");
+        }
         this.gender = gender;
     }
 
@@ -38,7 +44,16 @@ public class Person {
         return civil_status;
     }
 
-    public void setCivil_status(String civil_status) {
+    public final void setCivil_status(String civil_status) {
+        if (civil_status == null) {
+            throw new IllegalArgumentException("Civil status is required.");
+        }
+        java.util.List<String> validStatuses = java.util.Arrays.asList(
+            "Single", "Married", "Widow/er", "Legally Separated", "With Qualified Dependent Child/ren"
+        );
+        if (!validStatuses.contains(civil_status)) {
+            throw new IllegalArgumentException("Invalid Civil Status. Must be Single, Married, Widow/er, Legally Separated, or With Qualified Dependent Child/ren.");
+        }
         this.civil_status = civil_status;
     }
 
@@ -46,7 +61,10 @@ public class Person {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public final void setDate_of_birth(String date_of_birth) {
+        if (date_of_birth == null || !date_of_birth.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            throw new IllegalArgumentException("Date of Birth must be in YYYY-MM-DD format.");
+        }
         this.date_of_birth = date_of_birth;
     }
 
@@ -54,7 +72,10 @@ public class Person {
         return place_of_birth;
     }
 
-    public void setPlace_of_birth(String place_of_birth) {
+    public final void setPlace_of_birth(String place_of_birth) {
+        if (place_of_birth == null || place_of_birth.isEmpty()) {
+            throw new IllegalArgumentException("Place of Birth is required.");
+        }
         this.place_of_birth = place_of_birth;
     }
 }
