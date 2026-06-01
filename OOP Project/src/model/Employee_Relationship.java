@@ -1,3 +1,4 @@
+package model;
 public class Employee_Relationship {
     private int applicant_id;
     private String emp_tin;

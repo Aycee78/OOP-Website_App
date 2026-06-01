@@ -1,3 +1,4 @@
+package model;
 public class Location {
     private String mun_code;
     private String mun;

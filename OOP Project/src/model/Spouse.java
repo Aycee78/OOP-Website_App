@@ -1,3 +1,4 @@
+package model;
 public class Spouse {
     private int applicant_id;
     private String spouse_fullname;

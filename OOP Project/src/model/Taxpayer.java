@@ -1,4 +1,6 @@
+package model;
 // extends Person: This means Taxpayer inherits (shares) all details from the Person class so we don't have to rewrite code for name, gender, etc.
+
 public class Taxpayer extends Person {
     private int applicant_id;
     private String taxpayer_tin;

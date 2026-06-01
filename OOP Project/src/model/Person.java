@@ -1,3 +1,4 @@
+package model;
 public class Person {
     private String taxpayer_fullname;
     private String gender;
@@ -5,13 +6,12 @@ public class Person {
     private String date_of_birth;
     private String place_of_birth;
 
-=======
     // Blank constructor: Let's us make an empty Person object first, without having to type their details right away.
     public Person() {}
 
     // Pre-filled constructor: Let's us make a Person with their details set immediately in one step.
     public Person(String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth) {
->>>>>>> 974d22ef7ef17d998cf414243705652323e13464
+
         this.taxpayer_fullname = taxpayer_fullname;
         this.gender = gender;
         this.civil_status = civil_status;
@@ -58,6 +58,6 @@ public class Person {
 
     public void setPlace_of_birth(String place_of_birth) {
         this.place_of_birth = place_of_birth;
->>>>>>> 974d22ef7ef17d998cf414243705652323e13464
+
     }
 }
