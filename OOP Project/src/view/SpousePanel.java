@@ -4,81 +4,74 @@ import javax.swing.*;
 
 public class SpousePanel extends JPanel {
 
+    public JComboBox spouseempstatComboBox;
+    public JComboBox exemptclaimComboBox;
+    public JTextField spousenameJtextfield;
+    public JTextField spousetinJtextfield;
+    public JTextField spouseempnameJtextfield;
+    public JTextField spouseemptinJtextfield;
+
+
     public SpousePanel() {
 
         setLayout(null);
 
-        //Set the components of Spouse
+        int rh = 28;
+        int rg = 45;
+        int y0 = 15;
 
-        //Make JLabel for Spouse Title
         JLabel spoutitlelabel = new JLabel("Part II - Spouse Information");
-        spoutitlelabel.setBounds(40,20,400,30);
+        spoutitlelabel.setBounds(25, y0, 400, rh);
         add(spoutitlelabel);
-        
-        //Make JLabel for Spouse Employment Status
+
+        int row = 1;
         JLabel spouseempstatlabel = new JLabel("Employment Status of Spouse");
-        spouseempstatlabel.setBounds(40,70,220,30);
+        spouseempstatlabel.setBounds(25, y0 + rg*row, 220, rh);
         add(spouseempstatlabel);
-
-        //Make the JComboBox for Spouse Employment Status with specific values
         String[] spouseempstat = {"Unemployed", "Employed Locally", "Employed Abroad", "Engaged in Business/Practice of Profession"};
-        JComboBox spouseempstatComboBox = new JComboBox<>(spouseempstat);
-        spouseempstatComboBox.setBounds(270,70,350,30);
+        spouseempstatComboBox = new JComboBox<>(spouseempstat);
+        spouseempstatComboBox.setBounds(260, y0 + rg*row, 350, rh);
         add(spouseempstatComboBox);
-        
-        //Make JLabel for Exemption Claimant
-        JLabel exemptclaimlabel = new JLabel("Exemption Claimant");
-        exemptclaimlabel.setBounds(40,120,220,30);
-        add(exemptclaimlabel);
 
-        //Make the JComboBox for Exemption Claimant with specific values
+        row = 2;
+        JLabel exemptclaimlabel = new JLabel("Exemption Claimant");
+        exemptclaimlabel.setBounds(25, y0 + rg*row, 220, rh);
+        add(exemptclaimlabel);
         String[] exemptclaim = {"Husband Claims", "Wife Claims"};
-        JComboBox exemptclaimComboBox = new JComboBox<>(exemptclaim);
-        exemptclaimComboBox.setBounds(270,120,350,30);
+        exemptclaimComboBox = new JComboBox<>(exemptclaim);
+        exemptclaimComboBox.setBounds(260, y0 + rg*row, 350, rh);
         add(exemptclaimComboBox);
 
-        //Make JLabel for Spouse Full Name
+        row = 3;
         JLabel spousenamelabel = new JLabel("Spouse Full Name");
-        spousenamelabel.setBounds(40,170,220,30);
+        spousenamelabel.setBounds(25, y0 + rg*row, 220, rh);
         add(spousenamelabel);
-
-        //Make JTextField for Spouse Full Name
-        JTextField spousenameJtextfield = new JTextField();
-        spousenameJtextfield.setBounds(270,170,350,30);
+        spousenameJtextfield = new JTextField();
+        spousenameJtextfield.setBounds(260, y0 + rg*row, 350, rh);
         add(spousenameJtextfield);
-        
-        //Make JLabel for Spouse TIN
-        JLabel spousetinlabel = new JLabel("Spouse TIN");
-        spousetinlabel.setBounds(40,220,220,30);
-        add(spousetinlabel);
 
-        //Make JTextField for Spouse TIN
-        JTextField spousetinJtextfield = new JTextField();
-        spousetinJtextfield.setBounds(270,220,200,30);
+        row = 4;
+        JLabel spousetinlabel = new JLabel("Spouse TIN");
+        spousetinlabel.setBounds(25, y0 + rg*row, 220, rh);
+        add(spousetinlabel);
+        spousetinJtextfield = new JTextField();
+        spousetinJtextfield.setBounds(260, y0 + rg*row, 250, rh);
         add(spousetinJtextfield);
 
-        //Make JLabel for Spouse Employer Full Name
+        row = 5;
         JLabel spouseempnamelabel = new JLabel("Employer's Name of Spouse");
-        spouseempnamelabel.setBounds(40,270,220,30);
+        spouseempnamelabel.setBounds(25, y0 + rg*row, 220, rh);
         add(spouseempnamelabel);
-
-        //Make JTextField for Spouse Employer Full Name
-        JTextField spouseempnameJtextfield = new JTextField();
-        spouseempnameJtextfield.setBounds(270,270,350,30);
+        spouseempnameJtextfield = new JTextField();
+        spouseempnameJtextfield.setBounds(260, y0 + rg*row, 350, rh);
         add(spouseempnameJtextfield);
 
-        //Make JLabel for Spouse Employer TIN
+        row = 6;
         JLabel spouseemptinlabel = new JLabel("Employer's TIN of Spouse");
-        spouseemptinlabel.setBounds(40,320,220,30);
+        spouseemptinlabel.setBounds(25, y0 + rg*row, 220, rh);
         add(spouseemptinlabel);
-
-        //Make JTextField for Spouse Employer TIN
-        JTextField spouseemptinJtextfield = new JTextField();
-        spouseemptinJtextfield.setBounds(270,320,200,30);
+        spouseemptinJtextfield = new JTextField();
+        spouseemptinJtextfield.setBounds(260, y0 + rg*row, 250, rh);
         add(spouseemptinJtextfield);
-
-
-        
     }
-    
 }

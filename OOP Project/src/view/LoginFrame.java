@@ -1,91 +1,115 @@
 package view;
 
 import javax.swing.*;
-
 import dao.Sql;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JFrame {
 
     private int failedatt = 0;
+    private CardLayout cardLayout;
+    private JPanel containerPanel;
 
-    //Make the constructor
-    public LoginFrame (){
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(null);
-        
+    public LoginFrame() {
+        setTitle("BIR Form 1902 Login");
+        setSize(500, 500); 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        setLocationRelativeTo(null); 
+        setResizable(false); 
 
-        //Set the Logo Label
-        /* 
-        JLabel logolabel= new JLabel();
-        ImageIcon logoIcon = new ImageIcon("C:\\Users\\Aycee\\Documents\\OOP Website_App\\OOP Project\\resources\\Logo.jpg");
-        logolabel.setIcon(logoIcon);
-        logolabel.setBounds(20,20,150,150);
-        mainPanel.add(logolabel);
-        */
-        
-        //Set the Login Frame
-        setTitle("BIR Form 1902"); //Set the title of the frame
-        setSize(1920, 1080); //Set the size of the frame
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Exit the frame when hitting close button
-        setLocationRelativeTo(null); //Center the JFrame on the screen
-        setResizable(false); //Make the frame not resizable
+        cardLayout = new CardLayout();
+        containerPanel = new JPanel(cardLayout);
 
-        //Set the title Label
-        JLabel titleLabel = new JLabel("BIR Form 1902");
-        titleLabel.setFont(new Font("Inter", Font.BOLD, 40));
-        titleLabel.setBounds(650,200,500,30);
-        mainPanel.add(titleLabel);
+        // Create panels
+        JPanel loginPanel = createLoginPanel();
+        JPanel signupPanel = createSignupPanel();
 
+        containerPanel.add(loginPanel, "LOGIN");
+        containerPanel.add(signupPanel, "SIGNUP");
 
-        //Set the Sign in Label
-        JLabel signinLabel = new JLabel("Sign In");
-        signinLabel.setFont(new Font("Inter", Font.BOLD, 20));
-        signinLabel.setBounds(754,380,150,30);
-        mainPanel.add(signinLabel);
+        add(containerPanel);
+        cardLayout.show(containerPanel, "LOGIN");
+        setVisible(true);
+    }
 
-        //Set the Username Label
-        JLabel usernameLabel = new JLabel("Username");
-        usernameLabel.setBounds(680,450,150,30);
-        mainPanel.add(usernameLabel);
+    private JPanel createLoginPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        //Set the Text Field where users can input their username
-        JTextField usernameField = new JTextField();
-        usernameField.setBounds(680,480,220,30);
-        mainPanel.add(usernameField);
+        // Title
+        JLabel titleLabel = new JLabel("BIR Form 1902", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Inter", Font.BOLD, 32));
+        titleLabel.setForeground(new Color(30, 65, 150));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        panel.add(titleLabel, gbc);
 
-        //Set the Password Label
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(680,530,150,30);
-        mainPanel.add(passwordLabel);
+        // Sign in label
+        JLabel signinLabel = new JLabel("Sign In", SwingConstants.CENTER);
+        signinLabel.setFont(new Font("Inter", Font.BOLD, 18));
+        gbc.gridy = 1;
+        gbc.insets = new Insets(20, 10, 10, 10);
+        panel.add(signinLabel, gbc);
 
-        //Set Password Field where users can input their Password securely
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(680,560,220,30);
-        mainPanel.add(passwordField);
-
-        //Set the Error Text when there's a problem with the input of username password 
-        JLabel errorLabel = new JLabel("Invalid Username or Password");
-        errorLabel.setBounds(680,410,200,30);
-        errorLabel.setVisible(false); //Set Visibility to not visible since it's not initially visible unless there's a invalid input
+        // Error Label
+        JLabel errorLabel = new JLabel("Invalid Username or Password", SwingConstants.CENTER);
         errorLabel.setForeground(Color.RED);
-        mainPanel.add(errorLabel);
-        
+        errorLabel.setVisible(false);
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 10, 5, 10);
+        panel.add(errorLabel, gbc);
 
-        //Set the Login Button
+        // Username Label
+        JLabel usernameLabel = new JLabel("Username");
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(5, 10, 2, 10);
+        panel.add(usernameLabel, gbc);
+
+        // Username Field
+        JTextField usernameField = new JTextField(15);
+        usernameField.setPreferredSize(new Dimension(200, 30));
+        gbc.gridy = 4;
+        panel.add(usernameField, gbc);
+
+        // Password Label
+        JLabel passwordLabel = new JLabel("Password");
+        gbc.gridy = 5;
+        panel.add(passwordLabel, gbc);
+
+        // Password Field
+        JPasswordField passwordField = new JPasswordField(15);
+        passwordField.setPreferredSize(new Dimension(200, 30));
+        gbc.gridy = 6;
+        panel.add(passwordField, gbc);
+
+        // Login Button
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(680,600,220,30);
-        loginButton.setBackground(new Color(30,65,150));
+        loginButton.setBackground(new Color(30, 65, 150));
         loginButton.setForeground(Color.WHITE);
-        mainPanel.add(loginButton);
+        loginButton.setFocusPainted(false);
+        loginButton.setPreferredSize(new Dimension(200, 35));
+        gbc.gridy = 7;
+        gbc.insets = new Insets(15, 10, 5, 10);
+        panel.add(loginButton, gbc);
 
-        
+        // Toggle to Signup
+        JButton toggleButton = new JButton("Sign Up");
+        toggleButton.setForeground(new Color(30, 65, 150));
+        toggleButton.setBackground(Color.WHITE);
+        toggleButton.setBorderPainted(false);
+        toggleButton.setFocusPainted(false);
+        toggleButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        gbc.gridy = 8;
+        gbc.insets = new Insets(5, 10, 10, 10);
+        panel.add(toggleButton, gbc);
 
-        //Create a login button action listener
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -97,30 +121,180 @@ public class LoginFrame extends JFrame{
                     errorLabel.setVisible(false);
                     dispose();
                     new MainMenuFrame().setVisible(true);
-
-                }else {
+                } else {
                     failedatt++;
                     errorLabel.setVisible(true);
 
                     if (failedatt >= 3) {
-                        JOptionPane.showMessageDialog(null, "Too many failed attempts. Try again later.","Error", JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
+                        JOptionPane.showMessageDialog(null, "Too many failed attempts. Try again later.", "Error", JOptionPane.ERROR_MESSAGE);
+                        System.exit(0);
                     }
-
                 }
             }
         });
-        
 
+        toggleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(containerPanel, "SIGNUP");
+            }
+        });
 
-
-
-
-
-
-
-        add(mainPanel);
-        setVisible(true);
+        return panel;
     }
-    
+
+    private JPanel createSignupPanel() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 10, 8, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Title
+        JLabel titleLabel = new JLabel("BIR Form 1902", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Inter", Font.BOLD, 32));
+        titleLabel.setForeground(new Color(30, 65, 150));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        panel.add(titleLabel, gbc);
+
+        // Sign Up title label
+        JLabel signupLabel = new JLabel("Sign Up", SwingConstants.CENTER);
+        signupLabel.setFont(new Font("Inter", Font.BOLD, 18));
+        gbc.gridy = 1;
+        gbc.insets = new Insets(15, 10, 5, 10);
+        panel.add(signupLabel, gbc);
+
+        // Message Label (Error / Success)
+        JLabel messageLabel = new JLabel("", SwingConstants.CENTER);
+        messageLabel.setFont(new Font("Inter", Font.BOLD, 12));
+        messageLabel.setVisible(false);
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 10, 5, 10);
+        panel.add(messageLabel, gbc);
+
+        // Username Label
+        JLabel usernameLabel = new JLabel("Username");
+        gbc.gridy = 3;
+        gbc.gridwidth = 1;
+        gbc.insets = new Insets(2, 10, 2, 10);
+        panel.add(usernameLabel, gbc);
+
+        // Username Field
+        JTextField usernameField = new JTextField(15);
+        usernameField.setPreferredSize(new Dimension(200, 30));
+        gbc.gridy = 4;
+        panel.add(usernameField, gbc);
+
+        // Password Label
+        JLabel passwordLabel = new JLabel("Password");
+        gbc.gridy = 5;
+        panel.add(passwordLabel, gbc);
+
+        // Password Field
+        JPasswordField passwordField = new JPasswordField(15);
+        passwordField.setPreferredSize(new Dimension(200, 30));
+        gbc.gridy = 6;
+        panel.add(passwordField, gbc);
+
+        // Confirm Password Label
+        JLabel confirmPasswordLabel = new JLabel("Confirm Password");
+        gbc.gridy = 7;
+        panel.add(confirmPasswordLabel, gbc);
+
+        // Confirm Password Field
+        JPasswordField confirmPasswordField = new JPasswordField(15);
+        confirmPasswordField.setPreferredSize(new Dimension(200, 30));
+        gbc.gridy = 8;
+        panel.add(confirmPasswordField, gbc);
+
+        // Register Button
+        JButton registerButton = new JButton("Register");
+        registerButton.setBackground(new Color(30, 65, 150));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setFocusPainted(false);
+        registerButton.setPreferredSize(new Dimension(200, 35));
+        gbc.gridy = 9;
+        gbc.insets = new Insets(15, 10, 5, 10);
+        panel.add(registerButton, gbc);
+
+        // Toggle to Login
+        JButton toggleButton = new JButton("Sign In");
+        toggleButton.setForeground(new Color(30, 65, 150));
+        toggleButton.setBackground(Color.WHITE);
+        toggleButton.setBorderPainted(false);
+        toggleButton.setFocusPainted(false);
+        toggleButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        gbc.gridy = 10;
+        gbc.insets = new Insets(5, 10, 10, 10);
+        panel.add(toggleButton, gbc);
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText().trim();
+                String password = new String(passwordField.getPassword()).trim();
+                String confirmPassword = new String(confirmPasswordField.getPassword()).trim();
+
+                if (username.isEmpty() || password.isEmpty()) {
+                    messageLabel.setText("Fields cannot be empty.");
+                    messageLabel.setForeground(Color.RED);
+                    messageLabel.setVisible(true);
+                    return;
+                }
+
+                if (!password.equals(confirmPassword)) {
+                    messageLabel.setText("Passwords do not match.");
+                    messageLabel.setForeground(Color.RED);
+                    messageLabel.setVisible(true);
+                    return;
+                }
+
+                Sql db = new Sql();
+                if (db.checkUserExists(username)) {
+                    messageLabel.setText("Username already taken.");
+                    messageLabel.setForeground(Color.RED);
+                    messageLabel.setVisible(true);
+                } else {
+                    boolean success = db.registerUser(username, password);
+                    if (success) {
+                        messageLabel.setText("Registration successful!");
+                        messageLabel.setForeground(new Color(40, 120, 40));
+                        messageLabel.setVisible(true);
+                        
+                        // Clear fields
+                        usernameField.setText("");
+                        passwordField.setText("");
+                        confirmPasswordField.setText("");
+                        
+                        // Switch back to Login after a short delay
+                        Timer timer = new Timer(1500, new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent evt) {
+                                messageLabel.setVisible(false);
+                                cardLayout.show(containerPanel, "LOGIN");
+                            }
+                        });
+                        timer.setRepeats(false);
+                        timer.start();
+                    } else {
+                        messageLabel.setText("Error registering user.");
+                        messageLabel.setForeground(Color.RED);
+                        messageLabel.setVisible(true);
+                    }
+                }
+            }
+        });
+
+        toggleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                messageLabel.setVisible(false);
+                cardLayout.show(containerPanel, "LOGIN");
+            }
+        });
+
+        return panel;
+    }
 }
