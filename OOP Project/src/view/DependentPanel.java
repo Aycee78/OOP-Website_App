@@ -2,255 +2,194 @@ package view;
 
 import javax.swing.*;
 
-public class DependentPanel extends JPanel{
+public class DependentPanel extends JPanel {
+
+    public JTextField depename1Jtextfield;
+    public JSpinner day4JSpinner;
+    public JSpinner month4JSpinner;
+    public JSpinner year4JSpinner;
+    public JComboBox isincapa1ComboBox;
+    
+    public JTextField depename2Jtextfield;
+    public JSpinner day5JSpinner;
+    public JSpinner month5JSpinner;
+    public JSpinner year5JSpinner;
+    public JComboBox isincapa2ComboBox;
+    
+    public JTextField depename3Jtextfield;
+    public JSpinner day6JSpinner;
+    public JSpinner month6JSpinner;
+    public JSpinner year6JSpinner;
+    public JComboBox isincapa3ComboBox;
+    
+    public JTextField depename4Jtextfield;
+    public JSpinner day7JSpinner;
+    public JSpinner month7JSpinner;
+    public JSpinner year7JSpinner;
+    public JComboBox isincapa4ComboBox;
 
     public DependentPanel() {
 
         setLayout(null);
 
-        //Set the components of Dependents
+        int rh = 28;
+        int rg = 45;
+        int y0 = 15;
 
-        //Make JLabel for Dependent Name Title
-        JLabel depetitlelabel = new JLabel("Part III - Depdendents Information");
-        depetitlelabel.setBounds(40,20,400,30);
+        JLabel depetitlelabel = new JLabel("Part III - Dependents Information");
+        depetitlelabel.setBounds(25, y0, 400, rh);
         add(depetitlelabel);
 
-        //Make JLabel for Dependent Name 
+        // Column positions
+        int nameX = 25;
+        int nameFieldX = 150;
+        int nameFieldW = 250;
+        int dobDayX = 430;
+        int incaFldX = 780;
+
+        int row = 1;
         JLabel depenamelabel = new JLabel("Name of Qualified Dependent Children");
-        depenamelabel.setBounds(40,70,220,30);
+        depenamelabel.setBounds(nameX, y0 + rg*row, 250, rh);
         add(depenamelabel);
 
-
-        //Make JLabel for Dependent 1
-        JLabel depename1label = new JLabel("Dependent 1");
-        depename1label.setBounds(40,120,150,30);
-        add(depename1label);
-        
-        //Make JTextField for Dependent 1
-        JTextField depename1Jtextfield = new JTextField();
-        depename1Jtextfield.setBounds(270,120,220,30);
-        add(depename1Jtextfield);
-
-        
-        
-        
-        //Make JLabel for Dependent 2
-        JLabel depename2label = new JLabel("Dependent 2");
-        depename2label.setBounds(40,170,150,30);
-        add(depename2label);
-
-        //Make JTextField for Dependent 2
-        JTextField depename2Jtextfield = new JTextField();
-        depename2Jtextfield.setBounds(270,170,220,30);
-        add(depename2Jtextfield);
-
-       
-       
-       //Make JLabel for Dependent 3
-        JLabel depename3label = new JLabel("Dependent 3");
-        depename3label.setBounds(40,220,150,30);
-        add(depename3label);
-
-        //Make JTextField for Dependent 3
-        JTextField depename3Jtextfield = new JTextField();
-        depename3Jtextfield.setBounds(270,220,220,30);
-        add(depename3Jtextfield);
-
-       
-       
-        //Make JLabel for Dependent 4
-        JLabel depename4label = new JLabel("Dependent 4");
-        depename4label.setBounds(40,270,150,30);
-        add(depename4label);
-
-        //Make JTextField for Dependent 4
-        JTextField depename4Jtextfield = new JTextField();
-        depename4Jtextfield.setBounds(270,270,220,30);
-        add(depename4Jtextfield);
-
-       
-       
-       
-       
-       
-       
-       
-        //Make JLabel for Dependent Date of Birth 
         JLabel depedoblabel = new JLabel("Date of Birth");
-        depedoblabel.setBounds(520,70,150,30);
+        depedoblabel.setBounds(dobDayX, y0 + rg*row, 120, rh);
         add(depedoblabel);
 
-        //Make JSpinner for Dependent 1 Date of Birth
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
-        JLabel day4 = new JLabel("Day");
-        day4.setBounds(520,120,30,30);
-        JSpinner day4JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day4JSpinner.setBounds(550,120,40,30);
-        add(day4);
-        add(day4JSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
-        JLabel month4 = new JLabel("Month");
-        month4.setBounds(600,120,50,30);
-        String[] months4 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month4JSpinner = new JSpinner(new SpinnerListModel(months4));
-        month4JSpinner.setBounds(650,120,90,30);
-        add(month4);
-        add(month4JSpinner);
-
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
-        JLabel year4 = new JLabel("Year");
-        year4.setBounds(750,120,40,30);
-        JSpinner year4JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year4JSpinner.setBounds(790,120,60,30);
-        add(year4);
-        add(year4JSpinner);
-
-        //Make JSpinner for Dependent 2 Date of Birth
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
-        JLabel day5 = new JLabel("Day");
-        day5.setBounds(520,170,30,30);
-        JSpinner day5JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day5JSpinner.setBounds(550,170,40,30);
-        add(day5);
-        add(day5JSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
-        JLabel month5 = new JLabel("Month");
-        month5.setBounds(600,170,50,30);
-        String[] months5 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month5JSpinner = new JSpinner(new SpinnerListModel(months5));
-        month5JSpinner.setBounds(650,170,90,30);
-        add(month5);
-        add(month5JSpinner);
-
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
-        JLabel year5 = new JLabel("Year");
-        year5.setBounds(750,170,40,30);
-        JSpinner year5JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year5JSpinner.setBounds(790,170,60,30);
-        add(year5);
-        add(year5JSpinner);
-
-        //Make JSpinner for Dependent 3 Date of Birth
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
-        JLabel day6 = new JLabel("Day");
-        day6.setBounds(520,220,30,30);
-        JSpinner day6JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day6JSpinner.setBounds(550,220,40,30);
-        add(day6);
-        add(day6JSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
-        JLabel month6 = new JLabel("Month");
-        month6.setBounds(600,220,50,30);
-        String[] months6 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month6JSpinner = new JSpinner(new SpinnerListModel(months6));
-        month6JSpinner.setBounds(650,220,90,30);
-        add(month6);
-        add(month6JSpinner);
-
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
-        JLabel year6 = new JLabel("Year");
-        year6.setBounds(750,220,40,30);
-        JSpinner year6JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year6JSpinner.setBounds(790,220,60,30);
-        add(year6);
-        add(year6JSpinner);
-
-        //Make JSpinner for Dependent 4 Date of Birth
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
-        JLabel day7 = new JLabel("Day");
-        day7.setBounds(520,270,30,30);
-        JSpinner day7JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day7JSpinner.setBounds(550,270,40,30);
-        add(day7);
-        add(day7JSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
-        JLabel month7 = new JLabel("Month");
-        month7.setBounds(600,270,50,30);
-        String[] months7 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month7JSpinner = new JSpinner(new SpinnerListModel(months7));
-        month7JSpinner.setBounds(650,270,90,30);
-        add(month7);
-        add(month7JSpinner);
-
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
-        JLabel year7 = new JLabel("Year");
-        year7.setBounds(750,270,40,30);
-        JSpinner year7JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year7JSpinner.setBounds(790,270,60,30);
-        add(year7);
-        add(year7JSpinner);
-
-        
-        
-        
-        
-        
-        //Make JLabel for Dependent Is Incapacitated
-        JLabel depeisincalabel = new JLabel("Is Incapacitated");
-        depeisincalabel.setBounds(880,70,120,30);
+        JLabel depeisincalabel = new JLabel("Incapacitated?");
+        depeisincalabel.setBounds(incaFldX, y0 + rg*row, 120, rh);
         add(depeisincalabel);
 
-        //Make the JComboBox for Dependent 1 Is Incapacitated with specific values
-        String[] isincapa1 = {"Yes", "No"};
-        JComboBox isincapa1ComboBox = new JComboBox<>(isincapa1);
-        isincapa1ComboBox.setBounds(880,120,80,30);
-        add(isincapa1ComboBox); 
+        // Dependent 1
+        row = 2;
+        JLabel depename1label = new JLabel("Dependent 1");
+        depename1label.setBounds(nameX, y0 + rg*row, 120, rh);
+        add(depename1label);
+        depename1Jtextfield = new JTextField();
+        depename1Jtextfield.setBounds(nameFieldX, y0 + rg*row, nameFieldW, rh);
+        add(depename1Jtextfield);
 
-        //Make the JComboBox for Dependent 2 Is Incapacitated with specific values
+        JLabel day4 = new JLabel("Day");
+        day4.setBounds(dobDayX, y0 + rg*row, 28, rh);
+        day4JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day4JSpinner.setBounds(dobDayX+28, y0 + rg*row, 45, rh);
+        add(day4); add(day4JSpinner);
+
+        JLabel month4 = new JLabel("Month");
+        month4.setBounds(dobDayX+80, y0 + rg*row, 40, rh);
+        String[] months4 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month4JSpinner = new JSpinner(new SpinnerListModel(months4));
+        month4JSpinner.setBounds(dobDayX+120, y0 + rg*row, 90, rh);
+        add(month4); add(month4JSpinner);
+
+        JLabel year4 = new JLabel("Year");
+        year4.setBounds(dobDayX+215, y0 + rg*row, 30, rh);
+        year4JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year4JSpinner.setBounds(dobDayX+245, y0 + rg*row, 60, rh);
+        add(year4); add(year4JSpinner);
+
+        String[] isincapa1 = {"Yes", "No"};
+        isincapa1ComboBox = new JComboBox<>(isincapa1);
+        isincapa1ComboBox.setBounds(incaFldX, y0 + rg*row, 80, rh);
+        add(isincapa1ComboBox);
+
+        // Dependent 2
+        row = 3;
+        JLabel depename2label = new JLabel("Dependent 2");
+        depename2label.setBounds(nameX, y0 + rg*row, 120, rh);
+        add(depename2label);
+        depename2Jtextfield = new JTextField();
+        depename2Jtextfield.setBounds(nameFieldX, y0 + rg*row, nameFieldW, rh);
+        add(depename2Jtextfield);
+
+        JLabel day5 = new JLabel("Day");
+        day5.setBounds(dobDayX, y0 + rg*row, 28, rh);
+        day5JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day5JSpinner.setBounds(dobDayX+28, y0 + rg*row, 45, rh);
+        add(day5); add(day5JSpinner);
+
+        JLabel month5 = new JLabel("Month");
+        month5.setBounds(dobDayX+80, y0 + rg*row, 40, rh);
+        String[] months5 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month5JSpinner = new JSpinner(new SpinnerListModel(months5));
+        month5JSpinner.setBounds(dobDayX+120, y0 + rg*row, 90, rh);
+        add(month5); add(month5JSpinner);
+
+        JLabel year5 = new JLabel("Year");
+        year5.setBounds(dobDayX+215, y0 + rg*row, 30, rh);
+        year5JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year5JSpinner.setBounds(dobDayX+245, y0 + rg*row, 60, rh);
+        add(year5); add(year5JSpinner);
+
         String[] isincapa2 = {"Yes", "No"};
-        JComboBox isincapa2ComboBox = new JComboBox<>(isincapa2);
-        isincapa2ComboBox.setBounds(880,170,80,30);
+        isincapa2ComboBox = new JComboBox<>(isincapa2);
+        isincapa2ComboBox.setBounds(incaFldX, y0 + rg*row, 80, rh);
         add(isincapa2ComboBox);
 
-        //Make the JComboBox for Dependent 3 Is Incapacitated with specific values
+        // Dependent 3
+        row = 4;
+        JLabel depename3label = new JLabel("Dependent 3");
+        depename3label.setBounds(nameX, y0 + rg*row, 120, rh);
+        add(depename3label);
+        depename3Jtextfield = new JTextField();
+        depename3Jtextfield.setBounds(nameFieldX, y0 + rg*row, nameFieldW, rh);
+        add(depename3Jtextfield);
+
+        JLabel day6 = new JLabel("Day");
+        day6.setBounds(dobDayX, y0 + rg*row, 28, rh);
+        day6JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day6JSpinner.setBounds(dobDayX+28, y0 + rg*row, 45, rh);
+        add(day6); add(day6JSpinner);
+
+        JLabel month6 = new JLabel("Month");
+        month6.setBounds(dobDayX+80, y0 + rg*row, 40, rh);
+        String[] months6 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month6JSpinner = new JSpinner(new SpinnerListModel(months6));
+        month6JSpinner.setBounds(dobDayX+120, y0 + rg*row, 90, rh);
+        add(month6); add(month6JSpinner);
+
+        JLabel year6 = new JLabel("Year");
+        year6.setBounds(dobDayX+215, y0 + rg*row, 30, rh);
+        year6JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year6JSpinner.setBounds(dobDayX+245, y0 + rg*row, 60, rh);
+        add(year6); add(year6JSpinner);
+
         String[] isincapa3 = {"Yes", "No"};
-        JComboBox isincapa3ComboBox = new JComboBox<>(isincapa3);
-        isincapa3ComboBox.setBounds(880,220,80,30);
+        isincapa3ComboBox = new JComboBox<>(isincapa3);
+        isincapa3ComboBox.setBounds(incaFldX, y0 + rg*row, 80, rh);
         add(isincapa3ComboBox);
 
-        //Make the JComboBox for Dependent 4 Is Incapacitated with specific values
+        // Dependent 4
+        row = 5;
+        JLabel depename4label = new JLabel("Dependent 4");
+        depename4label.setBounds(nameX, y0 + rg*row, 120, rh);
+        add(depename4label);
+        depename4Jtextfield = new JTextField();
+        depename4Jtextfield.setBounds(nameFieldX, y0 + rg*row, nameFieldW, rh);
+        add(depename4Jtextfield);
+
+        JLabel day7 = new JLabel("Day");
+        day7.setBounds(dobDayX, y0 + rg*row, 28, rh);
+        day7JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day7JSpinner.setBounds(dobDayX+28, y0 + rg*row, 45, rh);
+        add(day7); add(day7JSpinner);
+
+        JLabel month7 = new JLabel("Month");
+        month7.setBounds(dobDayX+80, y0 + rg*row, 40, rh);
+        String[] months7 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month7JSpinner = new JSpinner(new SpinnerListModel(months7));
+        month7JSpinner.setBounds(dobDayX+120, y0 + rg*row, 90, rh);
+        add(month7); add(month7JSpinner);
+
+        JLabel year7 = new JLabel("Year");
+        year7.setBounds(dobDayX+215, y0 + rg*row, 30, rh);
+        year7JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year7JSpinner.setBounds(dobDayX+245, y0 + rg*row, 60, rh);
+        add(year7); add(year7JSpinner);
+
         String[] isincapa4 = {"Yes", "No"};
-        JComboBox isincapa4ComboBox = new JComboBox<>(isincapa4);
-        isincapa4ComboBox.setBounds(880,270,80,30);
+        isincapa4ComboBox = new JComboBox<>(isincapa4);
+        isincapa4ComboBox.setBounds(incaFldX, y0 + rg*row, 80, rh);
         add(isincapa4ComboBox);
-
-
     }
-    
 }

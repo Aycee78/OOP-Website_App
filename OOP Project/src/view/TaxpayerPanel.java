@@ -2,493 +2,419 @@ package view;
 
 import javax.swing.*;
 
-
 public class TaxpayerPanel extends JPanel {
+
+    public JComboBox<String> taxpayerComboBox;
+    public JSpinner dayJSpinner;
+    public JSpinner monthJSpinner;
+    public JSpinner yearJSpinner;
+    public PlaceholderTextField taxtin;
+    public PlaceholderTextField rdocode;
+    public PlaceholderTextField taxpayername;
+    public JComboBox<String> civilstatusComboBox;
+    public JComboBox<String> genderComboBox;
+    public JSpinner day1JSpinner;
+    public JSpinner month1JSpinner;
+    public JSpinner year1JSpinner;
+    public PlaceholderTextField placeobJtextfield;
+    public PlaceholderTextField mothernameJtextfield;
+    public PlaceholderTextField fathernameJtextfield;
+    public PlaceholderTextField citizenshipJtextfield;
+    public PlaceholderTextField othercitizenJtextfield;
+    public JComboBox<String> idtypeComboBox;
+    public PlaceholderTextField idnumJtextfield;
+    public PlaceholderTextField idissuerJtextfield;
+    public PlaceholderTextField idplaceJtextfield;
+    public JSpinner day2JSpinner;
+    public JSpinner month2JSpinner;
+    public JSpinner year2JSpinner;
+    public JSpinner day3JSpinner;
+    public JSpinner month3JSpinner;
+    public JSpinner year3JSpinner;
+    public PlaceholderTextField landlineJtextfield;
+    public PlaceholderTextField mobilenumJtextfield;
+    public PlaceholderTextField faxnumJtextfield;
+    public PlaceholderTextField emailaddJtextfield;
+    public PlaceholderTextField localaddressJtextfield;
+    public PlaceholderTextField foreignaddressJtextfield;
+    public PlaceholderTextField municipalityJtextfield;
+    public PlaceholderTextField taxtypeJtextfield;
+    public PlaceholderTextField formtypeJtextfield;
+    public PlaceholderTextField atcJtextfield;
+    public PlaceholderTextField zipCodeJtextfield;
 
     public TaxpayerPanel() {
 
         setLayout(null);
 
+        // Adjusted to prevent overlapping. Col1: 20, Col2: 570, Col3: 1110
+        int rh = 28;
+        int rg = 36;
+        int y0 = 12;
 
-        //Set the components of Taxpayer
+        // ===== COLUMN 1: Taxpayer Info =====
+        int c1lbl = 20;
+        int c1lblW = 205;
+        int c1fld = 230;
+        int c1w = 250;
 
-        //Make JLabel for Taxpayer Title
         JLabel taxptitlelabel = new JLabel("Part I - Taxpayer Information");
-        taxptitlelabel.setBounds(40,20,400,30);
+        taxptitlelabel.setBounds(c1lbl, y0, 400, rh);
         add(taxptitlelabel);
 
-
-        //Set taxpayer Label
+        int row = 1;
         JLabel taxpayerLabel = new JLabel("Taxpayer Type");
-        taxpayerLabel.setBounds(40,70,220,30);
+        taxpayerLabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(taxpayerLabel);
-
-        //Make the JComboBox for Taxpayer Type since it has specific values
-        String[] taxtype = {"Local Emloyee", "Resident Alien Employee"};
-        JComboBox taxpayerComboBox = new JComboBox<>(taxtype);
-        taxpayerComboBox.setBounds(270,70,220,30);
+        String[] taxtype = {"Local Employee", "Resident Alien Employee"};
+        taxpayerComboBox = new JComboBox<>(taxtype);
+        taxpayerComboBox.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(taxpayerComboBox);
 
-
-
-
-
-        //Make BIR Reg Date Label
+        row = 2;
         JLabel BIRregdateLabel = new JLabel("BIR Registration Date (MM/DD/YYYY)");
-        BIRregdateLabel.setBounds(40,120,220,30);
+        BIRregdateLabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(BIRregdateLabel);
 
-        //Make JSpinner for BIR Reg Date
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
         JLabel day = new JLabel("Day");
-        day.setBounds(270,120,30,30);
-        JSpinner dayJSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        dayJSpinner.setBounds(305,120,40,30);
-        add(day);
-        add(dayJSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
+        day.setBounds(c1fld, y0 + rg*row, 30, rh);
+        dayJSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        dayJSpinner.setBounds(c1fld+30, y0 + rg*row, 45, rh);
+        add(day); add(dayJSpinner);
+
         JLabel month = new JLabel("Month");
-        month.setBounds(352,120,45,30);
-        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner monthJSpinner = new JSpinner(new SpinnerListModel(months));
-        monthJSpinner.setBounds(400,120,90,30);
-        add(month);
-        add(monthJSpinner);
+        month.setBounds(c1fld+85, y0 + rg*row, 45, rh);
+        String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        monthJSpinner = new JSpinner(new SpinnerListModel(months));
+        monthJSpinner.setBounds(c1fld+130, y0 + rg*row, 90, rh);
+        add(month); add(monthJSpinner);
 
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
         JLabel year = new JLabel("Year");
-        year.setBounds(497,120,35,30);
-        JSpinner yearJSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        yearJSpinner.setBounds(532,120,60,30);
-        add(year);
-        add(yearJSpinner);
+        year.setBounds(c1fld+230, y0 + rg*row, 35, rh);
+        yearJSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        yearJSpinner.setBounds(c1fld+265, y0 + rg*row, 60, rh);
+        add(year); add(yearJSpinner);
 
-
-
-
-
-
-
-        //Make JLabel for TIN
+        row = 3;
         JLabel taxpayertinlabel = new JLabel("Taxpayer TIN");
-        taxpayertinlabel.setBounds(40,170,220,30);
+        taxpayertinlabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(taxpayertinlabel);
-
-        //Make JTextField for Taxpayer TIN
-        JTextField taxtin = new JTextField();
-        taxtin.setBounds(270,170,220,30);
+        taxtin = new PlaceholderTextField("e.g., 123-456-789-000");
+        taxtin.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(taxtin);
 
-        //Make JLabel for RDO Code
+        row = 4;
         JLabel rdocodelabel = new JLabel("RDO Code");
-        rdocodelabel.setBounds(40,220,220,30);
+        rdocodelabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(rdocodelabel);
-
-        //Make JTextField for RDO Code
-        JTextField rdocode = new JTextField();
-        rdocode.setBounds(270,220,220,30);
+        rdocode = new PlaceholderTextField("Auto-filled based on Municipality");
+        rdocode.setBounds(c1fld, y0 + rg*row, c1w, rh);
+        rdocode.setEditable(false);
         add(rdocode);
 
-        //Make JLabel for Taxpayer FullName
+        row = 5;
         JLabel taxpayernamelabel = new JLabel("Taxpayer FullName");
-        taxpayernamelabel.setBounds(40,270,220,30);
+        taxpayernamelabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(taxpayernamelabel);
-
-        //Make JTextField for Taxpayer FullName
-        JTextField taxpayername = new JTextField();
-        taxpayername.setBounds(270,270,220,30);
+        taxpayername = new PlaceholderTextField("Last Name, First Name, Middle Name");
+        taxpayername.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(taxpayername);
 
-        //Make JLabel for Civil Status
+        row = 6;
         JLabel civilstatuslabel = new JLabel("Civil Status");
-        civilstatuslabel.setBounds(40,320,220,30);
+        civilstatuslabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(civilstatuslabel);
+        String[] civilStatusOptions = {"Single", "Married", "Widow/er", "Legally Separated", "With Qualified Dependent Child/ren"};
+        civilstatusComboBox = new JComboBox<>(civilStatusOptions);
+        civilstatusComboBox.setBounds(c1fld, y0 + rg*row, c1w, rh);
+        add(civilstatusComboBox);
 
-        //Make JTextField for Civil Status
-        JTextField civilstatusJtextfield = new JTextField();
-        civilstatusJtextfield.setBounds(270,320,220,30);
-        add(civilstatusJtextfield);
-
-        //Make JLabel for Gender
+        row = 7;
         JLabel genderlabel = new JLabel("Gender");
-        genderlabel.setBounds(40,370,220,30);
+        genderlabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(genderlabel);
-
-        //Make the JComboBox for Gender since it has specific values
         String[] gender = {"Male", "Female"};
-        JComboBox genderComboBox = new JComboBox<>(gender);
-        genderComboBox.setBounds(270,370,220,30);
+        genderComboBox = new JComboBox<>(gender);
+        genderComboBox.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(genderComboBox);
 
-
-
-
-
-
-
-        //Make Date of Birth Label
+        row = 8;
         JLabel dobLabel = new JLabel("Date of Birth (MM/DD/YYYY)");
-        dobLabel.setBounds(40,420,220,30);
+        dobLabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(dobLabel);
 
-        //Make JSpinner for Date of Birth
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
         JLabel day1 = new JLabel("Day");
-        day1.setBounds(270,420,30,30);
-        JSpinner day1JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day1JSpinner.setBounds(305,420,40,30);
-        add(day1);
-        add(day1JSpinner);
+        day1.setBounds(c1fld, y0 + rg*row, 30, rh);
+        day1JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day1JSpinner.setBounds(c1fld+30, y0 + rg*row, 45, rh);
+        add(day1); add(day1JSpinner);
 
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
         JLabel month1 = new JLabel("Month");
-        month1.setBounds(352,420,45,30);
-        String[] months1 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month1JSpinner = new JSpinner(new SpinnerListModel(months1));
-        month1JSpinner.setBounds(400,420,90,30);
-        add(month1);
-        add(month1JSpinner);
+        month1.setBounds(c1fld+85, y0 + rg*row, 45, rh);
+        String[] months1 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month1JSpinner = new JSpinner(new SpinnerListModel(months1));
+        month1JSpinner.setBounds(c1fld+130, y0 + rg*row, 90, rh);
+        add(month1); add(month1JSpinner);
 
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
         JLabel year1 = new JLabel("Year");
-        year1.setBounds(497,420,35,30);
-        JSpinner year1JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year1JSpinner.setBounds(532,420,60,30);
-        add(year1);
-        add(year1JSpinner);
+        year1.setBounds(c1fld+230, y0 + rg*row, 35, rh);
+        year1JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year1JSpinner.setBounds(c1fld+265, y0 + rg*row, 60, rh);
+        add(year1); add(year1JSpinner);
 
-        //Make JLabel for Place of Birth
+        row = 9;
         JLabel placeoblabel = new JLabel("Place of Birth");
-        placeoblabel.setBounds(40,470,220,30);
+        placeoblabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(placeoblabel);
-
-        //Make JTextField for Place of Birth
-        JTextField placeobJtextfield = new JTextField();
-        placeobJtextfield.setBounds(270,470,220,30);
+        placeobJtextfield = new PlaceholderTextField("e.g., Quezon City");
+        placeobJtextfield.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(placeobJtextfield);
 
-        //Make JLabel for Mother's Maiden Name
+        row = 10;
         JLabel mothernamelabel = new JLabel("Mother's Maiden Name");
-        mothernamelabel.setBounds(40,520,220,30);
+        mothernamelabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(mothernamelabel);
-
-        //Make JTextField for Mother's Maiden Name
-        JTextField mothernameJtextfield = new JTextField();
-        mothernameJtextfield.setBounds(270,520,220,30);
+        mothernameJtextfield = new PlaceholderTextField("Last Name, First Name, Middle Name");
+        mothernameJtextfield.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(mothernameJtextfield);
 
-        //Make JLabel for Father's Name
-        JLabel  fathernamelabel = new JLabel("Father's Name");
-        fathernamelabel.setBounds(40,570,220,30);
+        row = 11;
+        JLabel fathernamelabel = new JLabel("Father's Name");
+        fathernamelabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(fathernamelabel);
-
-        //Make JTextField for Father's Name
-        JTextField fathernameJtextfield = new JTextField();
-        fathernameJtextfield.setBounds(270,570,220,30);
+        fathernameJtextfield = new PlaceholderTextField("Last Name, First Name, Middle Name");
+        fathernameJtextfield.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(fathernameJtextfield);
 
-        //Make JLabel for Citizenship
-        JLabel  citizenshiplabel = new JLabel("Citizenship");
-        citizenshiplabel.setBounds(40,620,220,30);
+        row = 12;
+        JLabel citizenshiplabel = new JLabel("Citizenship");
+        citizenshiplabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(citizenshiplabel);
-
-        //Make JTextField for Citizenship
-        JTextField citizenshipJtextfield = new JTextField();
-        citizenshipJtextfield.setBounds(270,620,220,30);
+        citizenshipJtextfield = new PlaceholderTextField("e.g., Filipino");
+        citizenshipJtextfield.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(citizenshipJtextfield);
 
-        //Make JLabel for Other Citizenship
-        JLabel  othercitizenlabel = new JLabel("Other Citizenship");
-        othercitizenlabel.setBounds(40,670,220,30);
+        row = 13;
+        JLabel othercitizenlabel = new JLabel("Other Citizenship");
+        othercitizenlabel.setBounds(c1lbl, y0 + rg*row, c1lblW, rh);
         add(othercitizenlabel);
-
-        //Make JTextField for Other Citizenship
-        JTextField othercitizenJtextfield = new JTextField();
-        othercitizenJtextfield.setBounds(270,670,220,30);
+        othercitizenJtextfield = new PlaceholderTextField("e.g., None");
+        othercitizenJtextfield.setBounds(c1fld, y0 + rg*row, c1w, rh);
         add(othercitizenJtextfield);
 
 
+        // ===== COLUMN 2: Identification Details =====
+        int c2lbl = 580;
+        int c2lblW = 205;
+        int c2fld = 790;
+        int c2w = 250;
 
-
-
-
-
-
-        
-        
-        
-        //Make JLabel for Identification Details
-        JLabel  iddetailslabel = new JLabel("Identification Details");
-        iddetailslabel.setBounds(650,20,220,30);
+        JLabel iddetailslabel = new JLabel("Identification Details");
+        iddetailslabel.setBounds(c2lbl, y0, 220, rh);
         add(iddetailslabel);
 
-        //Make JLabel for ID Type
-        JLabel  idtypelabel = new JLabel("Identification Type");
-        idtypelabel.setBounds(650,70,220,30);
+        row = 1;
+        JLabel idtypelabel = new JLabel("Identification Type");
+        idtypelabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(idtypelabel);
+        String[] idTypes = {"Passport", "Driver's License", "UMID", "PhilID", "TIN Card", "Voter's ID", "Other"};
+        idtypeComboBox = new JComboBox<>(idTypes);
+        idtypeComboBox.setBounds(c2fld, y0 + rg*row, c2w, rh);
+        add(idtypeComboBox);
 
-        //Make JTextField for ID Type
-        JTextField idtypeJtextfield = new JTextField();
-        idtypeJtextfield.setBounds(880,70,220,30);
-        add(idtypeJtextfield);
-
-        //Make JLabel for ID Number
-        JLabel  idnumlabel = new JLabel("Identification Number");
-        idnumlabel.setBounds(650,120,220,30);
+        row = 2;
+        JLabel idnumlabel = new JLabel("Identification Number");
+        idnumlabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(idnumlabel);
-
-        //Make JTextField for ID Number
-        JTextField idnumJtextfield = new JTextField();
-        idnumJtextfield.setBounds(880,120,220,30);
+        idnumJtextfield = new PlaceholderTextField("e.g., P1234567A");
+        idnumJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(idnumJtextfield);
 
-
-
-
-
-
-        //Make JLabel for Effective Date
-        JLabel  effectdatelabel = new JLabel("Effective Date (MM/DD/YYYY)");
-        effectdatelabel.setBounds(650,270,220,30);
-        add(effectdatelabel);
-        
-        //Make JSpinner for Effective Date
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
-        JLabel day2 = new JLabel("Day");
-        day2.setBounds(880,270,30,30);
-        JSpinner day2JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day2JSpinner.setBounds(915,270,40,30);
-        add(day2);
-        add(day2JSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
-        JLabel month2 = new JLabel("Month");
-        month2.setBounds(962,270,45,30);
-        String[] months2 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month2JSpinner = new JSpinner(new SpinnerListModel(months2));
-        month2JSpinner.setBounds(1010,270,90,30);
-        add(month2);
-        add(month2JSpinner);
-
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
-        JLabel year2 = new JLabel("Year");
-        year2.setBounds(1107,270,35,30);
-        JSpinner year2JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year2JSpinner.setBounds(1142,270,60,30);
-        add(year2);
-        add(year2JSpinner);
-
-
-
-
-
-
-        //Make JLabel for Expiry Date
-        JLabel  expirydatelabel = new JLabel("Expiry Date (MM/DD/YYYY)");
-        expirydatelabel.setBounds(650,320,220,30);
-        add(expirydatelabel);
-        
-        //Make JSpinner for Expiry Date
-        
-        //Make Spinner for Day 
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Day
-        JLabel day3 = new JLabel("Day");
-        day3.setBounds(880,320,270,30);
-        JSpinner day3JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
-        day3JSpinner.setBounds(915,320,40,30);
-        add(day3);
-        add(day3JSpinner);
-    
-        //Make Spinner for Month 
-        //Create a string array for of the months to be the source of the spinner
-        //Creates a spinner that works with a item list 
-        //Create a JLabel for Month
-        JLabel month3 = new JLabel("Month");
-        month3.setBounds(962,320,45,30);
-        String[] months3 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        JSpinner month3JSpinner = new JSpinner(new SpinnerListModel(months3));
-        month3JSpinner.setBounds(1010,320,90,30);
-        add(month3);
-        add(month3JSpinner);
-
-        //Make Year Spinner
-        //Creates a spinner that works with numbers only
-        //Create a JLabel for Year
-        JLabel year3 = new JLabel("Year");
-        year3.setBounds(1107,320,35,30);
-        JSpinner year3JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
-        year3JSpinner.setBounds(1142,320,60,30);
-        add(year3);
-        add(year3JSpinner);
-
-
-
-
-
-        
-
-         //Make JLabel for ID Issuer
-        JLabel  idissuerlabel = new JLabel("Identification Issuer");
-        idissuerlabel.setBounds(650,170,220,30);
+        row = 3;
+        JLabel idissuerlabel = new JLabel("Identification Issuer");
+        idissuerlabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(idissuerlabel);
-
-        //Make JTextField for ID Issuer
-        JTextField idissuerJtextfield = new JTextField();
-        idissuerJtextfield.setBounds(880,170,220,30);
+        idissuerJtextfield = new PlaceholderTextField("e.g., DFA");
+        idissuerJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(idissuerJtextfield);
 
-        //Make JLabel for Place/Country of Issue
-        JLabel  idplacelabel = new JLabel("Identification Place/Country of Issue");
-        idplacelabel.setBounds(650,220,220,30);
+        row = 4;
+        JLabel idplacelabel = new JLabel("ID Place/Country of Issue");
+        idplacelabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(idplacelabel);
-
-        //Make JTextField for Place/Country of Issue
-        JTextField idplaceJtextfield = new JTextField();
-        idplaceJtextfield.setBounds(880,220,220,30);
+        idplaceJtextfield = new PlaceholderTextField("e.g., Manila");
+        idplaceJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(idplaceJtextfield);
 
+        row = 5;
+        JLabel effectdatelabel = new JLabel("Effective Date (MM/DD/YYYY)");
+        effectdatelabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
+        add(effectdatelabel);
 
+        JLabel day2 = new JLabel("Day");
+        day2.setBounds(c2fld, y0 + rg*row, 30, rh);
+        day2JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day2JSpinner.setBounds(c2fld+30, y0 + rg*row, 45, rh);
+        add(day2); add(day2JSpinner);
 
+        JLabel month2 = new JLabel("Month");
+        month2.setBounds(c2fld+85, y0 + rg*row, 45, rh);
+        String[] months2 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month2JSpinner = new JSpinner(new SpinnerListModel(months2));
+        month2JSpinner.setBounds(c2fld+130, y0 + rg*row, 90, rh);
+        add(month2); add(month2JSpinner);
 
+        JLabel year2 = new JLabel("Year");
+        year2.setBounds(c2fld+230, y0 + rg*row, 35, rh);
+        year2JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year2JSpinner.setBounds(c2fld+265, y0 + rg*row, 60, rh);
+        add(year2); add(year2JSpinner);
 
+        row = 6;
+        JLabel expirydatelabel = new JLabel("Expiry Date (MM/DD/YYYY)");
+        expirydatelabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
+        add(expirydatelabel);
 
+        JLabel day3 = new JLabel("Day");
+        day3.setBounds(c2fld, y0 + rg*row, 30, rh);
+        day3JSpinner = new JSpinner(new SpinnerNumberModel(1,1,31,1));
+        day3JSpinner.setBounds(c2fld+30, y0 + rg*row, 45, rh);
+        add(day3); add(day3JSpinner);
 
-        //Make JLabel for Preferred Contact Type
-        JLabel  prefercontacttypelabel = new JLabel("Preferred Contact Type");
-        prefercontacttypelabel.setBounds(650,370,220,30);
+        JLabel month3 = new JLabel("Month");
+        month3.setBounds(c2fld+85, y0 + rg*row, 45, rh);
+        String[] months3 = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        month3JSpinner = new JSpinner(new SpinnerListModel(months3));
+        month3JSpinner.setBounds(c2fld+130, y0 + rg*row, 90, rh);
+        add(month3); add(month3JSpinner);
+
+        JLabel year3 = new JLabel("Year");
+        year3.setBounds(c2fld+230, y0 + rg*row, 35, rh);
+        year3JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year3JSpinner.setBounds(c2fld+265, y0 + rg*row, 60, rh);
+        add(year3); add(year3JSpinner);
+
+        row = 7;
+        JLabel prefercontacttypelabel = new JLabel("Preferred Contact Type");
+        prefercontacttypelabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(prefercontacttypelabel);
 
-        //Make JLabel for Landline
+        row = 8;
         JLabel landlinelabel = new JLabel("Landline");
-        landlinelabel.setBounds(650,420,220,30);
+        landlinelabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(landlinelabel);
-
-        //Make JTextField for Landline
-        JTextField landlineJtextfield = new JTextField();
-        landlineJtextfield.setBounds(880,420,220,30);
+        landlineJtextfield = new PlaceholderTextField("e.g., 02-8123-4567");
+        landlineJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(landlineJtextfield);
 
-        //Make JLabel for Mobile Number
+        row = 9;
         JLabel mobilenumlabel = new JLabel("Mobile Number");
-        mobilenumlabel.setBounds(650,470,220,30);
+        mobilenumlabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(mobilenumlabel);
-
-        //Make JTextField for Mobile Number
-        JTextField mobilenumJtextfield = new JTextField();
-        mobilenumJtextfield.setBounds(880,470,220,30);
+        mobilenumJtextfield = new PlaceholderTextField("e.g., 09123456789");
+        mobilenumJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(mobilenumJtextfield);
 
-        //Make JLabel for Fax Number
+        row = 10;
         JLabel faxnumlabel = new JLabel("Fax Number");
-        faxnumlabel.setBounds(650,520,220,30);
+        faxnumlabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(faxnumlabel);
-
-        //Make JTextField for Fax Number
-        JTextField faxnumJtextfield = new JTextField();
-        faxnumJtextfield.setBounds(880,520,220,30);
+        faxnumJtextfield = new PlaceholderTextField("e.g., 02-8123-4568");
+        faxnumJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(faxnumJtextfield);
 
-        //Make JLabel for Email Address
+        row = 11;
         JLabel emailaddlabel = new JLabel("Email Address (required)");
-        emailaddlabel.setBounds(650,570,220,30);
+        emailaddlabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(emailaddlabel);
-
-        //Make JTextField for Email Address
-        JTextField emailaddJtextfield = new JTextField();
-        emailaddJtextfield.setBounds(880,570,220,30);
+        emailaddJtextfield = new PlaceholderTextField("e.g., example@domain.com");
+        emailaddJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(emailaddJtextfield);
 
-        //Make JLabel for Local Address
+        row = 12;
         JLabel localaddresslabel = new JLabel("Local Residence Address");
-        localaddresslabel.setBounds(650,620,220,30);
+        localaddresslabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(localaddresslabel);
-
-        //Make JTextField for Local Address
-        JTextField localaddressJtextfield = new JTextField();
-        localaddressJtextfield.setBounds(880,620,220,30);
+        localaddressJtextfield = new PlaceholderTextField("House/Unit No., Street, Subd., Brgy.");
+        localaddressJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(localaddressJtextfield);
 
-        //Make JLabel for Foreign Address
+        row = 13;
         JLabel foreignaddresslabel = new JLabel("Foreign Address");
-        foreignaddresslabel.setBounds(650,670,220,30);
+        foreignaddresslabel.setBounds(c2lbl, y0 + rg*row, c2lblW, rh);
         add(foreignaddresslabel);
-
-        //Make JTextField for Foreign Address
-        JTextField foreignaddressJtextfield = new JTextField();
-        foreignaddressJtextfield.setBounds(880,670,220,30);
+        foreignaddressJtextfield = new PlaceholderTextField("e.g., N/A");
+        foreignaddressJtextfield.setBounds(c2fld, y0 + rg*row, c2w, rh);
         add(foreignaddressJtextfield);
 
 
+        // ===== COLUMN 3: Municipality / Tax / Form / ATC =====
+        int c3lbl = 1130;
+        int c3lblW = 85;
+        int c3fld = 1220;
+        int c3w = 120;
 
-
-
-
-
-        //Make JLabel for Municipality
+        row = 1;
         JLabel municipalitylabel = new JLabel("Municipality");
-        municipalitylabel.setBounds(1160,70,180,30);
+        municipalitylabel.setBounds(c3lbl, y0 + rg*row, c3lblW, rh);
         add(municipalitylabel);
-
-        //Make JTextField for Municipality
-        JTextField municipalityJtextfield = new JTextField();
-        municipalityJtextfield.setBounds(1280,70,220,30);
+        municipalityJtextfield = new PlaceholderTextField("e.g. Manila");
+        municipalityJtextfield.setBounds(c3fld, y0 + rg*row, c3w, rh);
         add(municipalityJtextfield);
 
-        //Make JLabel for Tax Type
-        JLabel taxtypelabel = new JLabel("Tax Type");
-        taxtypelabel.setBounds(1160,120,180,30);
-        add(taxtypelabel);
+        // Add focus listener for auto-filling RDO code and mun code
+        municipalityJtextfield.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                String input = municipalityJtextfield.getText().trim();
+                if (!input.isEmpty()) {
+                    dao.Sql sql = new dao.Sql();
+                    for (model.Location loc : sql.getLocations()) {
+                        if (loc.getMun().equalsIgnoreCase(input) || loc.getMun_code().equalsIgnoreCase(input)) {
+                            rdocode.setText(loc.getRdo_code());
+                            municipalityJtextfield.setText(loc.getMun_code());
+                            break;
+                        }
+                    }
+                }
+            }
+        });
 
-        //Make JTextField for Tax Type
-        JTextField taxtypeJtextfield = new JTextField();
-        taxtypeJtextfield.setBounds(1280,120,220,30);
+        row = 2;
+        JLabel zipCodelabel = new JLabel("Zip Code");
+        zipCodelabel.setBounds(c3lbl, y0 + rg*row, c3lblW, rh);
+        add(zipCodelabel);
+        zipCodeJtextfield = new PlaceholderTextField("e.g. 1000");
+        zipCodeJtextfield.setBounds(c3fld, y0 + rg*row, c3w, rh);
+        add(zipCodeJtextfield);
+
+        row = 3;
+        JLabel taxtypelabel = new JLabel("Tax Type");
+        taxtypelabel.setBounds(c3lbl, y0 + rg*row, c3lblW, rh);
+        add(taxtypelabel);
+        taxtypeJtextfield = new PlaceholderTextField("");
+        taxtypeJtextfield.setBounds(c3fld, y0 + rg*row, c3w, rh);
+        taxtypeJtextfield.setText("Income Tax");
+        taxtypeJtextfield.setEditable(false);
         add(taxtypeJtextfield);
 
-        //Make JLabel for Form Type
+        row = 4;
         JLabel formtypelabel = new JLabel("Form Type");
-        formtypelabel.setBounds(1160,170,180,30);
+        formtypelabel.setBounds(c3lbl, y0 + rg*row, c3lblW, rh);
         add(formtypelabel);
-
-        //Make JTextField for Form Type
-        JTextField formtypeJtextfield = new JTextField();
-        formtypeJtextfield.setBounds(1280,170,220,30);
+        formtypeJtextfield = new PlaceholderTextField("");
+        formtypeJtextfield.setBounds(c3fld, y0 + rg*row, c3w, rh);
+        formtypeJtextfield.setText("1700");
+        formtypeJtextfield.setEditable(false);
         add(formtypeJtextfield);
 
-        //Make JLabel for ATC
+        row = 5;
         JLabel atclabel = new JLabel("ATC");
-        atclabel.setBounds(1160,220,180,30);
+        atclabel.setBounds(c3lbl, y0 + rg*row, c3lblW, rh);
         add(atclabel);
-
-        //Make JTextField for ATC
-        JTextField atcJtextfield = new JTextField();
-        atcJtextfield.setBounds(1280,220,220,30);
+        atcJtextfield = new PlaceholderTextField("");
+        atcJtextfield.setBounds(c3fld, y0 + rg*row, c3w, rh);
+        atcJtextfield.setText("II011");
+        atcJtextfield.setEditable(false);
         add(atcJtextfield);
     }
-    
 }

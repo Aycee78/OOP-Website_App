@@ -10,10 +10,9 @@ public class MainMenuFrame extends JFrame{
 
         //Set the Main Menu Frame
         setTitle("BIR Form 1902"); //Set the title of the frame
-        setSize(1920, 1080); //Set the size of the frame
+        setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximize the frame to fit the user's screen
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Exit the frame when hitting close button
         setLocationRelativeTo(null); //Center the JFrame on the screen
-        setResizable(false); //Make the frame not resizable
 
         //Make header Panel 
         JPanel headerPanel = new JPanel(new BorderLayout());
@@ -24,8 +23,13 @@ public class MainMenuFrame extends JFrame{
         //Make Left Panel for the title label
         JPanel leftPanel = new JPanel();
         leftPanel.setBackground(new Color(30,65,150));
-        leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT,10,15));
+        leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT,10,10)); // Adjusted vertical gap slightly to fit logo
         
+        // Add Logo
+        ImageIcon logoIcon = new ImageIcon(new ImageIcon("resources/Logo.png").getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+        JLabel logoLabel = new JLabel(logoIcon);
+        leftPanel.add(logoLabel);
+
         JLabel titleLabel = new JLabel("BIR Form 1902");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         titleLabel.setForeground(Color.WHITE);
