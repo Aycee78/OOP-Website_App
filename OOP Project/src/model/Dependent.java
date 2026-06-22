@@ -74,21 +74,7 @@ public class Dependent {
         return is_incapacitated;
     }
 
-<<<<<<< HEAD:OOP Project/src/Dependent.java
-    public final void setIs_incapacitated(String is_incapacitated) {
-        if (is_incapacitated == null || (!is_incapacitated.equals("Yes") && !is_incapacitated.equals("No"))) {
-            throw new IllegalArgumentException("is_incapacitated must be 'Yes' or 'No'.");
-        }
-        if (is_incapacitated.equals("No") && this.dependent_dob != null && this.dependent_dob.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            int birthYear = Integer.parseInt(this.dependent_dob.substring(0, 4));
-            int age = 2026 - birthYear;
-            if (age > 21) {
-                throw new IllegalArgumentException("Dependent cannot be over 21 unless they are incapacitated.");
-            }
-        }
-        this.is_incapacitated = is_incapacitated;
-    }
-=======
+    
     public void setIs_incapacitated(String is_incapacitated) {
         if (is_incapacitated != null && is_incapacitated.equalsIgnoreCase("Yes")){
         this.is_incapacitated = "Yes";
@@ -96,7 +82,7 @@ public class Dependent {
         this.is_incapacitated = "No";
         }
 
->>>>>>> main:OOP Project/src/model/Dependent.java
+
 }
 }
 

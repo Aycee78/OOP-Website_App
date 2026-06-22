@@ -11,20 +11,11 @@ public class Person {
 
     // Pre-filled constructor: Let's us make a Person with their details set immediately in one step.
     public Person(String taxpayer_fullname, String gender, String civil_status, String date_of_birth, String place_of_birth) {
-<<<<<<< HEAD:OOP Project/src/Person.java
-        setTaxpayer_fullname(taxpayer_fullname);
-        setGender(gender);
-        setCivil_status(civil_status);
-        setDate_of_birth(date_of_birth);
-        setPlace_of_birth(place_of_birth);
-=======
-
         this.taxpayer_fullname = taxpayer_fullname;
         this.gender = gender;
         this.civil_status = civil_status;
         this.date_of_birth = date_of_birth;
         this.place_of_birth = place_of_birth;
->>>>>>> main:OOP Project/src/model/Person.java
     }
 
     // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.

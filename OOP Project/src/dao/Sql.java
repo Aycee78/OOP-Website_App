@@ -17,7 +17,7 @@ import model.Taxpayer;
 
 public class Sql {
     // Database connection URL
-    private static final String DATABASE_URL = "jdbc:sqlite:OOPgroup2finaldb.db";
+    private static final String DATABASE_URL = "jdbc:sqlite:C:/Users/Aycee/Documents/OOP Website_App/OOP Project/OOPgroup2finaldb.db";
 
     // Connect to the SQLite database
     public Connection connect() throws SQLException, ClassNotFoundException {
