@@ -13,13 +13,13 @@ public class Employer {
 
     // Pre-filled constructor: Let's us make an employer with all company details set immediately in one step.
     public Employer(String emp_tin, String emp_fullname, String emp_full_address, String zip_code, String emp_landline, String emp_mun_code, String registering_office_type) {
-        this.emp_tin = emp_tin;
-        this.emp_fullname = emp_fullname;
-        this.emp_full_address = emp_full_address;
-        this.zip_code = zip_code;
-        this.emp_landline = emp_landline;
-        this.emp_mun_code = emp_mun_code;
-        this.registering_office_type = registering_office_type;
+        setEmp_tin(emp_tin);
+        setEmp_fullname(emp_fullname);
+        setEmp_full_address(emp_full_address);
+        setZip_code(zip_code);
+        setEmp_landline(emp_landline);
+        setEmp_mun_code(emp_mun_code);
+        setRegistering_office_type(registering_office_type);
     }
 
     // Getters and Setters (Data Protection): Keeps variables private and controls how we safely read and change them.
@@ -27,7 +27,10 @@ public class Employer {
         return emp_tin;
     }
 
-    public void setEmp_tin(String emp_tin) {
+    public final void setEmp_tin(String emp_tin) {
+        if (emp_tin == null || !emp_tin.matches("\\d{3}-\\d{3}-\\d{3}-\\d{3}")) {
+            throw new IllegalArgumentException("Employer TIN must be in 000-000-000-000 format.");
+        }
         this.emp_tin = emp_tin;
     }
 
@@ -35,7 +38,10 @@ public class Employer {
         return emp_fullname;
     }
 
-    public void setEmp_fullname(String emp_fullname) {
+    public final void setEmp_fullname(String emp_fullname) {
+        if (emp_fullname == null || emp_fullname.isEmpty()) {
+            throw new IllegalArgumentException("Employer full name is required.");
+        }
         this.emp_fullname = emp_fullname;
     }
 
@@ -43,7 +49,7 @@ public class Employer {
         return emp_full_address;
     }
 
-    public void setEmp_full_address(String emp_full_address) {
+    public final void setEmp_full_address(String emp_full_address) {
         this.emp_full_address = emp_full_address;
     }
 
@@ -51,7 +57,7 @@ public class Employer {
         return zip_code;
     }
 
-    public void setZip_code(String zip_code) {
+    public final void setZip_code(String zip_code) {
         this.zip_code = zip_code;
     }
 
@@ -59,7 +65,7 @@ public class Employer {
         return emp_landline;
     }
 
-    public void setEmp_landline(String emp_landline) {
+    public final void setEmp_landline(String emp_landline) {
         this.emp_landline = emp_landline;
     }
 
@@ -67,7 +73,7 @@ public class Employer {
         return emp_mun_code;
     }
 
-    public void setEmp_mun_code(String emp_mun_code) {
+    public final void setEmp_mun_code(String emp_mun_code) {
         this.emp_mun_code = emp_mun_code;
     }
 
@@ -75,7 +81,7 @@ public class Employer {
         return registering_office_type;
     }
 
-    public void setRegistering_office_type(String registering_office_type) {
+    public final void setRegistering_office_type(String registering_office_type) {
         this.registering_office_type = registering_office_type;
     }
 }

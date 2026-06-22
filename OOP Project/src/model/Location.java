@@ -37,7 +37,6 @@ public class Location {
     }
 
     // Text Display: Changes how this object looks as text so it displays nicely inside a dropdown list.
-    @Override
     public String toString() {
         return mun + " (" + mun_code + ")";
     }

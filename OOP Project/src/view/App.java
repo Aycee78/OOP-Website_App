@@ -7,13 +7,13 @@ public class App {
         //Create GUI components in EDT not in the Main so its safe to make the GUI. 
         javax.swing.SwingUtilities.invokeLater(() -> {
             //Create an object of the RegistrationForm to build the GUI. 
-            new RegistrationForm();
-            new LoginFrame();
-
-            
-
+            //new RegistrationForm();
+            new LoginFrame().setVisible(true);
+            //new MainMenuFrame().setVisible(true);
 
         });
 
     }
 }
+
+

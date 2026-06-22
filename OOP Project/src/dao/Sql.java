@@ -17,7 +17,7 @@ import model.Taxpayer;
 
 public class Sql {
     // Database connection URL
-    private static final String DATABASE_URL = "jdbc:sqlite:OOPgroup2finaldb.db";
+    private static final String DATABASE_URL = "jdbc:sqlite:C:/Users/Aycee/Documents/OOP Website_App/OOP Project/OOPgroup2finaldb.db";
 
     // Connect to the SQLite database
     public Connection connect() throws SQLException, ClassNotFoundException {
@@ -203,6 +203,33 @@ public class Sql {
 
     // Link a taxpayer to an employer (job record)
     public void saveEmployeeRelationship(Employee_Relationship relationship) {
+        String checkSql = "SELECT bir_reg_date FROM taxpayer WHERE applicant_id = ?;";
+        String taxpayerRegDate = null;
+        try (Connection connection = this.connect();
+             PreparedStatement checkStmt = connection.prepareStatement(checkSql)) {
+            checkStmt.setInt(1, relationship.getApplicant_id());
+            try (ResultSet rs = checkStmt.executeQuery()) {
+                if (rs.next()) {
+                    taxpayerRegDate = rs.getString("bir_reg_date");
+                }
+            }
+        } catch (Exception error) {
+            System.out.println("Failed to fetch taxpayer registration date: " + error.getMessage());
+        }
+
+        if (taxpayerRegDate != null && relationship.getHire_date() != null) {
+            try {
+                java.time.LocalDate regDate = java.time.LocalDate.parse(taxpayerRegDate);
+                java.time.LocalDate hireDate = java.time.LocalDate.parse(relationship.getHire_date());
+                long days = java.time.temporal.ChronoUnit.DAYS.between(hireDate, regDate);
+                if (days > 10) {
+                    throw new IllegalArgumentException("Filing deadline violated: Must be registered within 10 days from the hire date. Elapsed: " + days + " days.");
+                }
+            } catch (java.time.format.DateTimeParseException e) {
+                // Ignore parsing errors, or handle
+            }
+        }
+
         String sqlQuery = "INSERT INTO employee_relationship (applicant_id, emp_tin, emp_type, hire_date) VALUES (?, ?, ?, ?);";
         try (Connection connection = this.connect();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
