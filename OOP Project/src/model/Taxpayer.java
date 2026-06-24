@@ -389,4 +389,12 @@ public class Taxpayer extends Person {
         }
         this.id_place = id_place;
     }
+    
+    //Implements the getSummary method in the Person 
+    //that returns a string of the important taxpayer details
+    @Override
+    public String getSummary() {
+        return getTaxpayer_fullname() 
+        + " | " + getGender() + " | " + getCivil_status() + " | TIN: " + taxpayer_tin + " | Type: " + taxpayer_type;
+    }
 }

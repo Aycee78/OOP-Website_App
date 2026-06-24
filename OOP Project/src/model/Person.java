@@ -1,5 +1,8 @@
 package model;
-public class Person {
+
+//Made the person class abstract to be a blueprint for its subclasses
+//Person is an abstract class that doesn't allow it to be instantiated directly
+public abstract class Person { 
     private String taxpayer_fullname;
     private String gender;
     private String civil_status;
@@ -80,4 +83,8 @@ public class Person {
         this.place_of_birth = place_of_birth;
 
     }
+
+    //Create an abstract getSummary method that forces subclasses to make
+    //their own implementation of getSummary in their end
+    public abstract String getSummary();
 }

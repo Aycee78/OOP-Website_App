@@ -66,7 +66,7 @@ public class ReportPanel extends JPanel {
         totalappLabel.setFont(new Font("Arial", Font.BOLD,30));
         totalappLabel.setForeground(Color.WHITE);
         
-        //Make JLabel for the actual total application using the totalapp JLabel variable
+        //Make JLabel for the total application count using the totalapp JLabel variable
         totalapp = new JLabel("0", SwingConstants.CENTER);
         totalapp.setFont(new Font("Arial", Font.BOLD,40));
         totalapp.setForeground(Color.WHITE);
