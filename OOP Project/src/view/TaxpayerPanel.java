@@ -290,7 +290,7 @@ public class TaxpayerPanel extends JPanel {
 
         JLabel year3 = new JLabel("Year");
         year3.setBounds(c2fld+230, y0 + rg*row, 35, rh);
-        year3JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2026,1));
+        year3JSpinner = new JSpinner(new SpinnerNumberModel(2000,1900,2035,1));
         year3JSpinner.setBounds(c2fld+265, y0 + rg*row, 60, rh);
         add(year3); add(year3JSpinner);
 
